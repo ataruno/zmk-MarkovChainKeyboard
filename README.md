@@ -1,5 +1,5 @@
 # Markov Chain Keyboard
 
-![](./Readme_image/MarkovChainKeyboard.jpg)
+![](https://github.com/ataruno/zmk-MarkovChainKeyboard/blob/main/README_image/MarkovChainKeyboard.jpg)
 
 
