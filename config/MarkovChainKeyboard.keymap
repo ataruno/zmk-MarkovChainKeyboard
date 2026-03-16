@@ -1,0 +1,118 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/mouse.h>
+#include <behaviors/rgbled_widget.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
+
+// Leyer
+#define UPPER 1
+#define MID 2
+#define LOWER 3
+#define TACT 4
+
+// Japanese
+#define JP_MINUS MINUS        // -
+#define JP_CARET EQUAL        // ^
+#define JP_YEN   INT3         // ¥
+#define JP_AT    LBKT         // @
+#define JP_LBKT  RBKT         // [
+#define JP_EISU  CAPS         // Eisū (英数)
+#define JP_SEMI  SEMI         // ;
+#define JP_COLON SQT          // :
+#define JP_RBKT  NUHS         // ]
+#define JP_COMMA COMMA        // ,
+#define JP_DOT   DOT          // .
+#define JP_SLASH SLASH        // /
+#define JP_MHEN  INT5         // Muhenkan (無変換)
+#define JP_HENK  INT4         // Henkan (変換)
+#define JP_EXCL  LS(N1)       // !
+#define JP_DQT   LS(N2)       // "
+#define JP_HASH  LS(N3)       // #
+#define JP_DLLR  LS(N4)       // $
+#define JP_PRCNT LS(N5)       // %
+#define JP_AMPS  LS(N6)       // &
+#define JP_SQT   LS(N7)       // '
+#define JP_LPAR  LS(N8)       // (
+#define JP_RPAR  LS(N9)       // )
+#define JP_EQUAL LS(JP_MINUS) // =
+#define JP_TILDE LS(JP_CARET) // ~
+#define JP_PIPE  LS(JP_YEN)   // |
+#define JP_GRAVE LS(JP_AT)    // `
+#define JP_LBRC  LS(JP_LBKT)  // {
+#define JP_CAPS  LS(JP_EISU)  // Caps Lock
+#define JP_PLUS  LS(JP_SEMI)  // +
+#define JP_ASTRK LS(JP_COLON) // *
+#define JP_RBRC  LS(JP_RBKT)  // }
+#define JP_LT    LS(JP_COMMA) // <
+#define JP_RT    LS(JP_DOT)   // >
+#define JP_QMARK LS(JP_SLASH) // ?
+#define JP_UNDER LS(JP_BSLH)  // _
+
+
+/ {
+    macros {
+        to_layer_0: to_layer_0 {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+            label = "TO_LAYER_0";
+        };
+    };
+
+    behaviors {
+        lt_to_layer_0: lt_to_layer_0 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_TO_0";
+            bindings = <&mo>, <&to_layer_0>;
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+                &kp C_MUTE                &lt_to_layer_0 1 ESC
+                &mkp LCLK   &mkp RCLK     &lt_to_layer_0 2 ENTER
+                &mkp MCLK   &kp BACKSPACE &lt_to_layer_0 3 SPACE
+                                          &lt_to_layer_0 4 ESC
+            >;
+        };
+        UPPER {
+            bindings = <
+                &kp 1                           &kp ESC
+                &kp LC(LS(TAB))   &kp LC(T)     &kp ENTER
+                &kp LC(W)         &kp LC(TAB)   &kp SPACE
+                                                &none
+            >;
+        };
+        MID {
+            bindings = <
+                &kp 2                      &kp ESC
+                &kp LEFT     &kp UP        &kp ENTER
+                &kp DOWN     &kp RIGHT     &kp SPACE
+                                           &none
+            >;
+        };
+        LOWER {
+            bindings = <
+                &kp 3                            &kp ESC
+                &kp LG(LEFT)     &kp LG(UP)      &kp ENTER
+                &kp LG(DOWN)     &kp LG(RIGHT)   &kp SPACE
+                                                 &none
+            >;
+        };
+        TACT {
+            bindings = <
+                &bootloader                     &bt BT_SEL 1
+                &bt BT_CLR_ALL   &bt BT_SEL 4   &bt BT_SEL 2
+                &bt BT_CLR       &bt BT_SEL 5   &bt BT_SEL 3
+                                                &none
+            >;
+        };
+    };
+
+};
