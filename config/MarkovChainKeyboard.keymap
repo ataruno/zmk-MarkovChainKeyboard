@@ -75,42 +75,38 @@
         compatible = "zmk,keymap";
         default_layer {
             bindings = <
+                &kp 1  &kp 2  &kp 3
+                &kp 4  &kp 5  &kp 6
+                &kp 7  &kp 8  &bootloader
+            >;
+        };
+        UPPER {
+            bindings = <
                 &kp C_MUTE                &lt_to_layer_0 1 ESC
                 &mkp LCLK   &mkp RCLK     &lt_to_layer_0 2 ENTER
                 &mkp MCLK   &kp BACKSPACE &lt_to_layer_0 3 SPACE
                                           &lt_to_layer_0 4 ESC
             >;
         };
-        UPPER {
-            bindings = <
-                &kp 1                           &kp ESC
-                &kp LC(LS(TAB))   &kp LC(T)     &kp ENTER
-                &kp LC(W)         &kp LC(TAB)   &kp SPACE
-                                                &none
-            >;
-        };
         MID {
             bindings = <
-                &kp 2                      &kp ESC
-                &kp LEFT     &kp UP        &kp ENTER
-                &kp DOWN     &kp RIGHT     &kp SPACE
-                                           &none
+                &kp 1  &kp 2  &kp 3
+                &kp 4  &kp 5  &kp 6
+                &kp 7  &kp 8  &kp 9
             >;
         };
         LOWER {
             bindings = <
-                &kp 3                            &kp ESC
-                &kp LG(LEFT)     &kp LG(UP)      &kp ENTER
-                &kp LG(DOWN)     &kp LG(RIGHT)   &kp SPACE
-                                                 &none
+                &kp 1  &kp 2  &kp 3
+                &kp 4  &kp 5  &kp 6
+                &kp 7  &kp 8  &kp 9
             >;
         };
         TACT {
             bindings = <
-                &bootloader                     &bt BT_SEL 1
-                &bt BT_CLR_ALL   &bt BT_SEL 4   &bt BT_SEL 2
-                &bt BT_CLR       &bt BT_SEL 5   &bt BT_SEL 3
-                                                &none
+                &kp 1  &kp 2  &kp 3
+                &kp 4  &kp 5  &kp 6
+                &kp 7  &kp 8  &kp 9
             >;
         };
     };
